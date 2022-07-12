@@ -30,7 +30,7 @@ Explanation: Bob and George both have a condition that starts with DIAB1.
 # Write your MySQL query statement below
 
 SELECT patient_id, patient_name, conditions FROM Patients
-WHERE regexp_like(conditions, ' +DIAB1|^DIAB1|DIAB1$ ')
+WHERE REGEXP_LIKE(conditions, ' +DIAB1|^DIAB1|DIAB1$ ')
 
 ########### SOLUTION 2 ############
 
