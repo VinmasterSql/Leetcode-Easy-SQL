@@ -1,0 +1,39 @@
+##### Duplicate Emails #####
+Write an SQL query to report all the duplicate emails.
+Return the result table in any order.
+The query result format is in the following example.
+
+Example 1:
+Input: 
+Person table:
++----+---------+
+| id | email   |
++----+---------+
+| 1  | a@b.com |
+| 2  | c@d.com |
+| 3  | a@b.com |
++----+---------+
+Output: 
++---------+
+| Email   |
++---------+
+| a@b.com |
++---------+
+
+
+############### SOLUTION 1 ##########
+ # Write your MySQL query statement below
+
+SELECT Email
+FROM Person
+GROUP BY email
+HAVING COUNT(email)>1 ;
+
+############### SOLUTION 2 ##########
+
+SELECT vin.Email
+FROM
+    ( SELECT email, ROW_Number() OVER(PARTITION BY email ORDER BY email) as 'R_number'
+      FROM Person
+    ) as vin
+WHERE vin.R_number>1
